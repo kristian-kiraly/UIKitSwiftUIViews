@@ -3,13 +3,13 @@
 
 import SwiftUI
 
-class SwiftUIViewController: UIViewController {
-    init<Content: View>(backgroundColor: UIColor? = nil, @ViewBuilder swiftUIView: @MainActor @escaping () -> Content) {
+public class SwiftUIViewController: UIViewController {
+    public init<Content: View>(backgroundColor: UIColor? = nil, @ViewBuilder swiftUIView: @MainActor @escaping () -> Content) {
         super.init(nibName: nil, bundle: nil)
         loadSwiftUIView(backgroundColor: backgroundColor, swiftUIView: swiftUIView)
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -35,13 +35,13 @@ class SwiftUIViewController: UIViewController {
     }
 }
 
-class SwiftUIView: UIView {
-    init<Content: View>(@ViewBuilder swiftUIView: @MainActor @escaping () -> Content) {
+public class SwiftUIView: UIView {
+    public init<Content: View>(@ViewBuilder swiftUIView: @MainActor @escaping () -> Content) {
         super.init(frame: .zero)
         loadSwiftUIView(swiftUIView: swiftUIView)
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -65,7 +65,7 @@ class SwiftUIView: UIView {
     }
 }
 
-extension View {
+public extension View {
     var viewSize: CGSize {
         let hostingController = UIHostingController(rootView: self)
         return hostingController.view!.intrinsicContentSize
