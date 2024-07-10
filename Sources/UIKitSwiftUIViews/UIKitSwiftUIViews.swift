@@ -32,6 +32,8 @@ public class SwiftUIViewController: UIViewController {
         ])
         
         vc.didMove(toParent: self)
+        
+        view.clipsToBounds = true
     }
 }
 
