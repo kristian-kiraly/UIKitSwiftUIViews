@@ -14,15 +14,16 @@ public class SwiftUIViewController: UIViewController {
     }
     
     private func loadSwiftUIView<Content: View>(backgroundColor: UIColor?, @ViewBuilder swiftUIView: @MainActor @escaping () -> Content) {
-        if let backgroundColor {
-            self.view.backgroundColor = backgroundColor
-        }
         let vc = UIHostingController(rootView: swiftUIView())
         let uiView = vc.view!
         uiView.translatesAutoresizingMaskIntoConstraints = false
         
         addChild(vc)
         view.addSubview(uiView)
+        if let backgroundColor {
+            self.view.backgroundColor = backgroundColor
+            uiView.backgroundColor = backgroundColor
+        }
         
         NSLayoutConstraint.activate([
             uiView.topAnchor.constraint(equalTo: view.topAnchor),
